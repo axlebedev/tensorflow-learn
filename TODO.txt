@@ -1,0 +1,9 @@
+========== feature ==========
+- clickable flags
+
+========== techdebt ==========
+- single styles
+- use context for unused transit props
+
+==========   bug    ==========
+- fetchUSDPrice does not respect american holidays

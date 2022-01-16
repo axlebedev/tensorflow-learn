@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "@redxls4/ui",
+  "version": "0.0.1",
+  "scripts": {
+    "lint": "yarn run lint-js && yarn run lint-css"
+  }
+}
