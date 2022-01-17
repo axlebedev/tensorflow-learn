@@ -50,6 +50,10 @@ const Html = ({
           )
         })}
         <script src="https://apis.google.com/js/api.js" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js" />
+        <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" />
       </head>
       <body>
         <div
