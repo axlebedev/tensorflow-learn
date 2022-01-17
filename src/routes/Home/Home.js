@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss'
 
 import { styles } from '@redxls4/ui'
 // import TensorFlow from '../../components/TensorFlow/TensorFlow'
-import ML5 from '../../components/ML5/ML5'
+import ML5 from '../../components/ML5/ML5Regression'
 
 const useStyles = createUseStyles({
   flexDivRow: styles.flexDivRow,
