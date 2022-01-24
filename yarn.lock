@@ -2260,45 +2260,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redxls4/chartD3@workspace:modules/chartD3":
-  version: 0.0.0-use.local
-  resolution: "@redxls4/chartD3@workspace:modules/chartD3"
-  languageName: unknown
-  linkType: soft
-
 "@redxls4/commonHelpers@workspace:modules/commonHelpers":
   version: 0.0.0-use.local
   resolution: "@redxls4/commonHelpers@workspace:modules/commonHelpers"
   languageName: unknown
   linkType: soft
 
-"@redxls4/fetch@workspace:modules/fetch":
-  version: 0.0.0-use.local
-  resolution: "@redxls4/fetch@workspace:modules/fetch"
-  languageName: unknown
-  linkType: soft
-
-"@redxls4/gapi@workspace:modules/gapi":
-  version: 0.0.0-use.local
-  resolution: "@redxls4/gapi@workspace:modules/gapi"
-  languageName: unknown
-  linkType: soft
-
 "@redxls4/localStorageController@workspace:modules/localStorageController":
   version: 0.0.0-use.local
   resolution: "@redxls4/localStorageController@workspace:modules/localStorageController"
-  languageName: unknown
-  linkType: soft
-
-"@redxls4/logger@workspace:modules/logger":
-  version: 0.0.0-use.local
-  resolution: "@redxls4/logger@workspace:modules/logger"
-  languageName: unknown
-  linkType: soft
-
-"@redxls4/staticData@workspace:modules/staticData":
-  version: 0.0.0-use.local
-  resolution: "@redxls4/staticData@workspace:modules/staticData"
   languageName: unknown
   linkType: soft
 
