@@ -149,6 +149,9 @@ module.exports = {
 
     // чтобы не срабатывал self в воркере
     'no-restricted-globals': 'off',
+
+    // это нужно в useMemo
+    'no-underscore-dangle': 'off',
   },
 
   settings: {
