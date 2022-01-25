@@ -10,6 +10,9 @@ const useStyles = createUseStyles({
 
 const Home = () => {
   const classes = useStyles()
+  if (!__CLIENT__) {
+    return null
+  }
 
   return (
     <div className={classes.flexDivRow}>

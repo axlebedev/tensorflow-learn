@@ -39,6 +39,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@tensorflow/tfjs": "^3.13.0",
     "@tensorflow/tfjs-node": "^3.13.0",
+    "@tensorflow/tfjs-vis": "^1.5.1",
     "@tinkoff/invest-openapi-js-sdk": "^1.2.19",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -173,7 +174,7 @@
     "deploy": "babel-node tools/run deploy",
     "render": "babel-node tools/run render",
     "serve": "babel-node tools/run runServer",
-    "start": "babel-node tools/run start",
+    "start": "babel-node --no-color tools/run start",
     "start-inspect-brk": "babel-node --inspect-brk tools/run start"
   }
 }

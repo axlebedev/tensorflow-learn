@@ -1,65 +1,91 @@
 import React, {
-  useMemo,
-  useCallback,
+  useEffect,
+  useState,
 } from 'react'
-import * as tf from '@tensorflow/tfjs'
+
+import {
+  useModel,
+  useCars,
+  trainModel,
+  convertToTensor,
+} from './useModel'
+
+const visToShow = 'useModel'
 
 // Example: train model to find value of function `y=2x-1`
 const TensorFlowComponent = () => {
-  const model = useMemo(() => {
-    // Define a model for linear regression.
-    //
-    // Create new model instance
-    // A sequential model is any model where the outputs of one layer
-    // are the inputs to the next layer,
-    // i.e. the model topology is a simple ‘stack’ of layers, with no branching or skipping.
-    const _model = tf.sequential() // https://js.tensorflow.org/api/latest/#sequential
+  const cars = useCars(visToShow === 'useCars')
+  const model = useModel(visToShow === 'useModel')
 
-    // Add layer
-    // In a dense layer, every node in the layer is connected to every node in the preceding layer
-    _model.add(tf.layers.dense({
-      units: 1, // One output value
-      inputShape: [1], // One input value
-    }))
-
-    // Specify loss and optimiser function
-    _model.compile({
-      loss: 'meanSquaredError', // model tries to minimize this value
-      optimizer: 'sgd', // Stochastic Gradient Descent, ok for linear regression tasks
-    })
-    return _model
-  }, [])
-
-  const onClick = useCallback(
+  const [trainResult, setTrainResult] = useState(null)
+  console.log('%c11111', 'background:#00FF00', 'trainResult=', trainResult)
+  useEffect(
     async () => {
-      console.log('%c11111', 'background:#00FF00', Date.now() % 10000, 'TensorFlow:33 onClick')
-      // Train the model using the data.
-
-      // Prepare training data for `y=2x-1`
-      // const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4], [6, 1])
-      // const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7], [6, 1])
-      const xs = tf.tensor2d([1, 2, 3, 4, 5, 6], [6, 1])
-      const ys = tf.tensor2d([1000, 2000, 3000, 4000, 5000, 6000], [6, 1])
-
-      // Train the model
-      console.log('%c11111', 'background:#00FF00', 'start fit')
-      await model.fit(xs, ys, { epochs: 500 })
-      console.log('%c11111', 'background:#00FF00', 'finish fit')
-
-      // Use model to predict values
-      const result = model.predict(tf.tensor([5], [1, 1])) // Look at console
-      console.log('%c11111', 'background:#00FF00', 'result=', result)
-      console.log('%c11111', 'background:#00FF00', 'Array.from(result.dataSync())=', Array.from(result.dataSync()))
-      result.print()
+      console.log('%c11111', 'background:#00FF00', Date.now() % 10000, 'TensorFlow:22 useEffect', model, cars)
+      if (!model || cars.length === 0) {
+        return
+      }
+      const result = await trainModel({ model, ...convertToTensor(cars) })
+      setTrainResult(result)
     },
-    [model],
+    [cars, model],
   )
+  // const model = useMemo(() => {
+  //   // Define a model for linear regression.
+  //   //
+  //   // Create new model instance
+  //   // A sequential model is any model where the outputs of one layer
+  //   // are the inputs to the next layer,
+  //   // i.e. the model topology is a simple ‘stack’ of layers, with no branching or skipping.
+  //   const _model = tf.sequential() // https://js.tensorflow.org/api/latest/#sequential
+  //
+  //   // Add layer
+  //   // In a dense layer, every node in the layer is connected to every node in the preceding layer
+  //   _model.add(tf.layers.dense({
+  //     units: 1, // One output value
+  //     inputShape: [1], // One input value
+  //   }))
+  //
+  //   // Specify loss and optimiser function
+  //   _model.compile({
+  //     loss: 'meanSquaredError', // model tries to minimize this value
+  //     optimizer: 'sgd', // Stochastic Gradient Descent, ok for linear regression tasks
+  //   })
+  //   return _model
+  // }, [])
+  //
+  // const onClick = useCallback(
+  //   async () => {
+  //     // Train the model using the data.
+  //
+  //     // Prepare training data for `y=2x-1`
+  //     // const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4], [6, 1])
+  //     // const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7], [6, 1])
+  //     const xs = tf.tensor2d([1, 2, 3, 4, 5, 6], [6, 1])
+  //     const ys = tf.tensor2d([1000, 2000, 3000, 4000, 5000, 6000], [6, 1])
+  //
+  //     // Train the model
+  //     console.log('%c11111', 'background:#00FF00', 'start fit')
+  //     await model.fit(xs, ys, { epochs: 500 })
+  //     console.log('%c11111', 'background:#00FF00', 'finish fit')
+  //
+  //     // Use model to predict values
+  //     const result = model.predict(tf.tensor([5], [1, 1])) // Look at console
+  //     console.log('%c11111', 'background:#00FF00', 'result=', result)
+  //     console.log('%c11111', 'background:#00FF00', 'Array.from(result.dataSync())=', Array.from(result.dataSync()))
+  //     result.print()
+  //   },
+  //   [model],
+  // )
 
   return (
     <div>
       Look at console!
       <br />
-      <input type="button" onClick={onClick} value="RUN" />
+      <input
+        type="button"
+        value="RUN"
+      />
     </div>
   )
 }

@@ -20,6 +20,8 @@ module.exports = {
     __DEV__: true,
     __CLIENT__: true,
     gapi: 'readonly',
+    tf: true,
+    tfvis: true,
   },
 
   env: {
